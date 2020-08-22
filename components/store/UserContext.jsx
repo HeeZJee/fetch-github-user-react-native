@@ -7,8 +7,9 @@ import { reducer } from './UserReducer'
 export const ContextAPI = createContext({});
 
 
+
 export default function UserContextProvider({ children }) {
-    const [state, dispatch] = useReducer(reducer, 'heezjee')
+    const [state, dispatch] = useReducer(reducer)
     const searchHandler = (user) => {
         dispatch({
             type: 'FETCH_USER',
@@ -16,8 +17,6 @@ export default function UserContextProvider({ children }) {
         })
         fetchUser()
     }
-
-
     const fetchUser = async () => {
 
         let username = state

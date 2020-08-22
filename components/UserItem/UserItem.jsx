@@ -26,22 +26,27 @@ const UserItem = () => {
     return (
         <TouchableOpacity onPress={() => setModalState(true)}>
             <View>
-                {
-                    loading
-                        ? <Text>Loading... </Text>
-                        : < View style={styles.userContainer}>
-                            <Image
-                                style={styles.avatar}
-                                source={{
-                                    uri: user?.data?.avatar_url,
-                                }}
-                            />
-                            <View style={styles.textContainer}>
-                                <Text style={styles.username}> {user?.data?.login}</Text>
-                                <Text style={styles.url}>   {user?.data?.url}</Text>
-                            </View>
-                        </View>
-                }
+
+                < View style={styles.userContainer}>
+                    {
+                        loading
+                            ? <Text style={styles.loading}>Loading...</Text>
+                            : <>
+                                <Image
+                                    style={styles.avatar}
+                                    source={{
+                                        uri: user?.data?.avatar_url,
+                                    }}
+                                />
+                                <View style={styles.textContainer}>
+                                    <Text style={styles.username}> {user?.data?.login}</Text>
+                                    <Text style={styles.url}>   {user?.data?.url}</Text>
+                                </View>
+                            </>
+
+                    }
+                </View>
+
                 <UserModal modalState={modalState} setModalState={setModalState} />
             </View >
         </TouchableOpacity>
@@ -72,5 +77,10 @@ const styles = StyleSheet.create({
     url: {
         color: '#ccc',
         fontSize: 14,
+    },
+    loading: {
+        color: 'white',
+        padding: 15,
+        fontSize: 19,
     }
 })
