@@ -25,30 +25,31 @@ const UserItem = () => {
 
     return (
         <TouchableOpacity onPress={() => setModalState(true)}>
-            <View>
+            {user?.data &&
+                <View>
 
-                < View style={styles.userContainer}>
-                    {
-                        loading
-                            ? <Text style={styles.loading}>Loading...</Text>
-                            : <>
-                                <Image
-                                    style={styles.avatar}
-                                    source={{
-                                        uri: user?.data?.avatar_url,
-                                    }}
-                                />
-                                <View style={styles.textContainer}>
-                                    <Text style={styles.username}> {user?.data?.login}</Text>
-                                    <Text style={styles.url}>   {user?.data?.url}</Text>
-                                </View>
-                            </>
+                    < View style={styles.userContainer}>
+                        {
+                            loading
+                                ? <Text style={styles.loading}>Loading...</Text>
+                                : <>
+                                    <Image
+                                        style={styles.avatar}
+                                        source={{
+                                            uri: user.data.avatar_url,
+                                        }}
+                                    />
+                                    <View style={styles.textContainer}>
+                                        <Text style={styles.username}> {user.data.login}</Text>
+                                        <Text style={styles.url}>   {user.data.url}</Text>
+                                    </View>
+                                </>
 
-                    }
-                </View>
+                        }
+                    </View>
 
-                <UserModal modalState={modalState} setModalState={setModalState} />
-            </View >
+                    <UserModal modalState={modalState} setModalState={setModalState} />
+                </View >}
         </TouchableOpacity>
     )
 }
