@@ -17,11 +17,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.heezjee.githubUsers"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "A simplest way get github users info."
+    "description": "A simplest way get github users info.",
+    "sdkVersion": "38.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "com.heezjee.githubUsers"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
