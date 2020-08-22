@@ -93,6 +93,6 @@ const styles = StyleSheet.create({
     },
     close: {
         textAlign: 'center',
-        marginTop: 40,
+        marginTop: 20,
     }
 })
