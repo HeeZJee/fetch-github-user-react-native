@@ -5,7 +5,7 @@ import { ContextAPI } from '../store/UserContext'
 
 
 const UserItem = () => {
-    const [user, setUser] = useState({})
+    const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
     const [modalState, setModalState] = useState(false)
 
@@ -16,40 +16,65 @@ const UserItem = () => {
     useEffect(() => {
         (async () => {
             setLoading(true)
-            const data = await fetchUser()
-            setUser(data)
+            const userData = await fetchUser()
+
+            setUsers((prevUser) => [
+                { userDetail: userData?.data && userData.data, key: Math.random().toString() }
+                , ...prevUser
+            ])
+
             setLoading(false)
         })()
-    }, [setUser, setLoading, fetchUser])
+    }, [setUsers, setLoading, fetchUser])
+
+    // console.log('wow', users[0].key && users)
+    // console.log('--- start map ---')
+    // console.log('')
+    // console.log('')
+    // users?.map((user) => console.log('user ---', user?.userDetail?.login, user?.key))
 
 
     return (
         <TouchableOpacity onPress={() => setModalState(true)}>
-            {user?.data &&
-                <View>
 
-                    < View style={styles.userContainer}>
-                        {
-                            loading
-                                ? <Text style={styles.loading}>Loading...</Text>
-                                : <>
-                                    <Image
-                                        style={styles.avatar}
-                                        source={{
-                                            uri: user.data.avatar_url,
-                                        }}
-                                    />
-                                    <View style={styles.textContainer}>
-                                        <Text style={styles.username}> {user.data.login}</Text>
-                                        <Text style={styles.url}>   {user.data.url}</Text>
-                                    </View>
-                                </>
+            <FlatList
+                data={users[0]?.userDetail && users}
+                renderItem={
+                    ({ item: { userDetail, key } }) => (
 
-                        }
-                    </View>
+                        <View>
+                            {console.log('itemssss ', userDetail?.login, key)}
+                            {userDetail &&
+                                < View style={styles.userContainer}>
+                                    {
+                                        loading
+                                            ? <Text style={styles.loading}>Loading...</Text>
+                                            : <>
+                                                <Image
+                                                    style={styles.avatar}
+                                                    source={{
+                                                        uri: userDetail?.avatar_url,
+                                                    }}
+                                                />
+                                                <View style={styles.textContainer}>
+                                                    <Text style={styles.username}> {userDetail.login}</Text>
+                                                    <Text style={styles.url}>   {userDetail.url}</Text>
+                                                </View>
+                                            </>
 
-                    <UserModal modalState={modalState} setModalState={setModalState} />
-                </View >}
+                                    }
+                                </View>}
+
+                            < UserModal modalState={modalState} setModalState={setModalState} />
+                        </View >
+                    )
+                }
+
+
+            />
+
+
+
         </TouchableOpacity>
     )
 }
@@ -83,5 +108,8 @@ const styles = StyleSheet.create({
         color: 'white',
         padding: 15,
         fontSize: 19,
+    },
+    test: {
+        fontSize: 40,
     }
 })
