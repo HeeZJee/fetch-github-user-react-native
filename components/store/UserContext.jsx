@@ -18,12 +18,18 @@ export default function UserContextProvider({ children }) {
         })
         fetchUser()
     }
-    const fetchUser = async () => {
 
+
+    const fetchUser = async () => {
         let username = state
-        if (username) {
-            const user = await axios.get(`https://api.github.com/users/${username}`)
-            return user
+
+        try {
+            if (username) {
+                const user = await axios.get(`https://api.github.com/users/${username}`)
+                return user
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 
