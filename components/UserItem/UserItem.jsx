@@ -22,16 +22,11 @@ const UserItem = () => {
                 { userDetail: userData?.data && userData.data, key: Math.random().toString() }
                 , ...prevUser
             ])
-
             setLoading(false)
         })()
-    }, [setUsers, setLoading, fetchUser])
+    }, [fetchUser])
 
-    // console.log('wow', users[0].key && users)
-    // console.log('--- start map ---')
-    // console.log('')
-    // console.log('')
-    // users?.map((user) => console.log('user ---', user?.userDetail?.login, user?.key))
+
 
 
     return (
@@ -43,7 +38,6 @@ const UserItem = () => {
                     ({ item: { userDetail, key } }) => (
 
                         <View>
-                            {console.log('itemssss ', userDetail?.login, key)}
                             {userDetail &&
                                 < View style={styles.userContainer}>
                                     {
