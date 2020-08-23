@@ -4,7 +4,7 @@ import { ContextAPI } from '../store/UserContext'
 import { AntDesign } from '@expo/vector-icons';
 
 
-const UserModal = ({ modalState, setModalState }) => {
+const UserModal = ({ modalState, setModalState, userDetail }) => {
 
     const [user, setUser] = useState({})
     const { fetchUser } = useContext(ContextAPI)
@@ -15,30 +15,30 @@ const UserModal = ({ modalState, setModalState }) => {
         })()
     }, [setUser, fetchUser])
 
-
+    console.log(userDetail)
 
     return (
+        userDetail ?
+            <Modal visible={modalState} animationType='slide'>
+                <View style={styles.textContainer}>
+                    <Image
+                        style={styles.avatar}
+                        source={{
+                            uri: userDetail.avatar_url,
+                        }}
+                    />
+                    <Text style={styles.name}>   {userDetail.name}</Text>
+                    <View style={styles.followContainer}>
+                        <Text style={styles.follow}>Followers: {userDetail.followers}</Text>
+                        <Text style={styles.follow}>Following: {userDetail.following}</Text>
+                    </View>
 
-        <Modal visible={modalState} animationType='slide'>
-            <View style={styles.textContainer}>
-                <Image
-                    style={styles.avatar}
-                    source={{
-                        uri: user?.data?.avatar_url,
-                    }}
-                />
-                <Text style={styles.name}>   {user?.data?.name}</Text>
-                <View style={styles.followContainer}>
-                    <Text style={styles.follow}>Followers: {user?.data?.followers}</Text>
-                    <Text style={styles.follow}>Following: {user?.data?.following}</Text>
+                    <Text style={styles.location}>{userDetail.location}</Text>
                 </View>
-
-                <Text style={styles.location}>{user?.data?.location}</Text>
-            </View>
-            <TouchableOpacity onPress={() => setModalState(false)}>
-                <AntDesign style={styles.close} name="closecircleo" size={50} color="black" />
-            </TouchableOpacity>
-        </Modal>
+                <TouchableOpacity onPress={() => setModalState(false)}>
+                    <AntDesign style={styles.close} name="closecircleo" size={50} color="black" />
+                </TouchableOpacity>
+            </Modal> : null
 
     )
 }

@@ -59,7 +59,7 @@ const UserItem = () => {
                                     }
                                 </View>}
 
-                            < UserModal modalState={modalState} setModalState={setModalState} />
+                            < UserModal modalState={modalState} setModalState={setModalState} userDetail={userDetail} />
                         </View >
                     )
                 }
