@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { StyleSheet, Text, View, Modal, Image, TouchableHighlight, TouchableOpacity } from 'react-native'
-import { ContextAPI } from '../store/UserContext'
+import React from 'react'
+import { StyleSheet, Text, View, Modal, Image, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
 
