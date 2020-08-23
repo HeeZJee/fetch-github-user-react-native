@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { StyleSheet, Text, View, Image, FlatList, Modal, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
 import UserModal from '../UserModal/UserModal'
 import { ContextAPI } from '../store/UserContext'
 
