@@ -6,17 +6,6 @@ import { AntDesign } from '@expo/vector-icons';
 
 const UserModal = ({ modalState, setModalState, userDetail }) => {
 
-    const [user, setUser] = useState({})
-    const { fetchUser } = useContext(ContextAPI)
-    useEffect(() => {
-        (async () => {
-            const data = await fetchUser()
-            setUser(data)
-        })()
-    }, [setUser, fetchUser])
-
-    console.log(userDetail)
-
     return (
         userDetail ?
             <Modal visible={modalState} animationType='slide'>

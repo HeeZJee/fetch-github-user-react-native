@@ -17,7 +17,6 @@ const UserItem = () => {
         (async () => {
             setLoading(true)
             const userData = await fetchUser()
-
             setUsers((prevUser) => [
                 { userDetail: userData?.data && userData.data, key: Math.random().toString() }
                 , ...prevUser
