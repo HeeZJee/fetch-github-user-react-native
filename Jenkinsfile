@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'npm i expo-cli'
+                sh 'npm i -g expo-cli'
                 sh 'npm install' 
                 sh 'expo build:android -t apk'
                 sh 'expo build:status'
