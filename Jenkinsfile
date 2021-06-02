@@ -10,7 +10,6 @@ pipeline {
             steps {
                 sh 'npm i -g expo-cli'
                 sh 'npm install' 
-                sh 'expo publish' 
                 sh 'expo build:android -t apk'
                 sh 'expo build:status'
             
