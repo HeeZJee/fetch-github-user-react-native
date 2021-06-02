@@ -12,6 +12,7 @@ pipeline {
                 sh 'npm install' 
                 sh 'expo build:android -t apk'
                 sh 'expo build:status'
+                sh 'ls -alh'
             
         }
     }
